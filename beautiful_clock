@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/174807106?v=4" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cheel site</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 10vw; /* Основной размер шрифта */
+            margin: 0;
+            position: relative;
+            overflow: hidden; /* Убираем оба скроллбара */
+        }
+        #clock {
+            text-shadow: 10px 0px 10px rgba(255, 255, 255, 0.5);
+            position: absolute; /* Изменено для центрирования */
+            top: 50%; /* Центрирование по вертикали */
+            left: 50%; /* Центрирование по горизонтали */
+            transform: translate(-50%, -50%); /* Сдвиг для точного центрирования */
+            font-size: 20vw; /* Увеличенный размер шрифта для часов */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="clock">00:00:00</div>
+    
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function toggleFullscreen() {
+            const clockDiv = document.getElementById('clock');
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                document.documentElement.requestFullscreen();
+                clockDiv.style.position = 'absolute'; // Убедимся, что часы по центру
+            }
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
